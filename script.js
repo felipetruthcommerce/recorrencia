@@ -1,4 +1,5 @@
 // ===== Dados =====
+// (mantém o que você já tinha — incluindo seus descontos/valores atuais)
 const DATA = {
   mensal: [
     {
@@ -6,7 +7,7 @@ const DATA = {
       price: "R$ 597,00",
       variant: "base",
       features: [
-        "Grupo exclusivo com especialistas no whatsapp",
+        "Grupo exclusivo com especialistas",
         "1 banner para loja virtual / mês",
         "1 card para Instagram / mês",
         "PriceMatrix™ — planilha de precificação por marketplace",
@@ -20,7 +21,7 @@ const DATA = {
       variant: "recommended",
       tag: "Recomendado",
       features: [
-        "Tudo do Essencial +",
+        "Tudo do Essencial",
         "3 banners mensais (1 rotativo + 2 de categoria)",
         "3 cards para Instagram / mês",
         "Rede de Fornecedores Homologados"
@@ -41,15 +42,16 @@ const DATA = {
     }
   ],
 
-  /* === Semestral agora com 15% OFF === */
+  // Se você já atualizou para 15% e 20% OFF, mantenha aqui seus blocos
+  // de "semestral" e "anual" com os preços/economias que definimos.
   semestral: [
     {
       title: "Essencial",
-      price: "R$ 507,45", // 597 * 0.85
+      price: "R$ 507,45",
       variant: "base",
-      savings: "Economize R$ 537,30 no semestre", // (597-507,45)*6
+      savings: "Economize R$ 537,30 no semestre",
       features: [
-        "Grupo exclusivo com especialistas no whatsapp",
+        "Grupo exclusivo com especialistas",
         "1 banner para loja virtual / mês",
         "1 card para Instagram / mês",
         "PriceMatrix™ — planilha de precificação por marketplace",
@@ -61,11 +63,11 @@ const DATA = {
     },
     {
       title: "Escala",
-      price: "R$ 592,45", // 697 * 0.85
+      price: "R$ 592,45",
       variant: "recommended",
-      savings: "Economize R$ 627,30 no semestre", // (697-592,45)*6
+      savings: "Economize R$ 627,30 no semestre",
       features: [
-        "Tudo do Essencial +",
+        "Tudo do Essencial",
         "3 banners mensais (1 rotativo + 2 de categoria)",
         "3 cards para Instagram / mês",
         "Rede de Fornecedores Homologados",
@@ -76,11 +78,11 @@ const DATA = {
     },
     {
       title: "Truth Master",
-      price: "R$ 762,45", // 897 * 0.85
+      price: "R$ 762,45",
       variant: "master",
-      savings: "Economize R$ 807,30 no semestre", // (897-762,45)*6
+      savings: "Economize R$ 807,30 no semestre",
       features: [
-        "Tudo do Escala +",
+        "Tudo do Escala",
         "4 banners mensais (2 rotativos + 2 de categoria)",
         "4 cards para Instagram / mês",
         "1 Análise de performance em até 2 canais com insights",
@@ -91,15 +93,14 @@ const DATA = {
     }
   ],
 
-  /* === Anual agora com 20% OFF === */
   anual: [
     {
       title: "Essencial",
-      price: "R$ 477,60", // 597 * 0.80
+      price: "R$ 477,60",
       variant: "base",
-      savings: "Economize R$ 1.432,80 no ano", // (597-477,60)*12
+      savings: "Economize R$ 1.432,80 no ano",
       features: [
-        "Grupo exclusivo com especialistas no whatsapp",
+        "Grupo exclusivo com especialistas",
         "1 banner para loja virtual / mês",
         "1 card para Instagram / mês",
         "PriceMatrix™ — planilha de precificação por marketplace",
@@ -112,11 +113,11 @@ const DATA = {
     },
     {
       title: "Escala",
-      price: "R$ 557,60", // 697 * 0.80
+      price: "R$ 557,60",
       variant: "recommended",
-      savings: "Economize R$ 1.672,80 no ano", // (697-557,60)*12
+      savings: "Economize R$ 1.672,80 no ano",
       features: [
-        "Tudo do Essencial +",
+        "Tudo do Essencial",
         "3 banners mensais (1 rotativo + 2 de categoria)",
         "3 cards para Instagram / mês",
         "Rede de Fornecedores Homologados",
@@ -127,11 +128,11 @@ const DATA = {
     },
     {
       title: "Truth Master",
-      price: "R$ 717,60", // 897 * 0.80
+      price: "R$ 717,60",
       variant: "master",
-      savings: "Economize R$ 2.152,80 no ano", // (897-717,60)*12
+      savings: "Economize R$ 2.152,80 no ano",
       features: [
-        "Tudo do Escala +",
+        "Tudo do Escala",
         "4 banners mensais (2 rotativos + 2 de categoria)",
         "4 cards para Instagram / mês",
         "1 Análise de performance em até 2 canais com insights",
@@ -150,7 +151,25 @@ const $$ = (s,ctx=document)=>[...ctx.querySelectorAll(s)];
 const cardsRoot = $("#cards");
 const prevBtn   = $(".cards-nav .prev");
 const nextBtn   = $(".cards-nav .next");
+
 function iconCheck(){ return `<span class="icon" aria-hidden="true">✓</span>`; }
+
+// Formata cada feature conforme sua regra
+function formatFeature(text){
+  let t = String(text).trim();
+
+  // 1) Se for exatamente "Grupo exclusivo com especialistas" -> adicionar " no WhatsApp"
+  if (/^Grupo exclusivo com especialistas$/i.test(t)) {
+    t = "Grupo exclusivo com especialistas no WhatsApp";
+  }
+
+  // 2) Se começar com "Tudo do" -> garantir um " +" no final
+  if (/^Tudo do/i.test(t)) {
+    t = t.replace(/\s*\+?$/, " +");
+  }
+
+  return t;
+}
 
 // ===== Render =====
 function render(period="mensal"){
@@ -159,20 +178,24 @@ function render(period="mensal"){
 
   DATA[period].forEach(plan=>{
     const card = document.createElement("article");
-    card.className = "card" +
+    card.className =
+      "card" +
       (plan.variant==="recommended" ? " recommended" : "") +
       (plan.variant==="master" ? " master" : "");
 
+    // Cabeçalho
     const head = document.createElement("div");
     head.className = "card-head";
     head.innerHTML =
       `<h2 class="plan-title">${plan.title}</h2>` +
       (plan.tag ? `<span class="badge">${plan.tag}</span>` : "");
 
+    // Preço
     const price = document.createElement("div");
     price.className = "price";
     price.innerHTML = `${plan.price}<small>/mês</small>`;
 
+    // Savings
     let savingsEl = null;
     if (plan.savings){
       savingsEl = document.createElement("div");
@@ -181,21 +204,27 @@ function render(period="mensal"){
       savingsEl.innerHTML = valorNegrito;
     }
 
+    // Linha
     const hr = document.createElement("div");
     hr.className = "hr";
 
+    // Benefícios (aplicando formatação nas frases)
     const feats = document.createElement("div");
     feats.className = "features";
-    feats.innerHTML = plan.features
+    const featureHTML = plan.features
+      .map(f => formatFeature(f))
       .map(f => `<div class="feature">${iconCheck()}<div>${f}</div></div>`)
       .join("");
+    feats.innerHTML = featureHTML;
 
+    // CTA
     const ctaWrap = document.createElement("div");
     ctaWrap.className = "card-cta";
     ctaWrap.innerHTML = `<button class="cta ${plan.cta.secondary ? "secondary" : ""}" aria-label="${plan.cta.label} — ${plan.title}">
       ${plan.cta.label}
     </button>`;
 
+    // Montagem
     card.append(head, price);
     if (savingsEl) card.appendChild(savingsEl);
     card.append(hr, feats, ctaWrap);
