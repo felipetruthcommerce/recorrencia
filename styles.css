@@ -22,7 +22,7 @@ body{
 
 /* Header */
 .tc-header{text-align:center;padding:clamp(28px,5vw,56px) 16px 28px}
-.tc-logo{width:180px;height:90px;display:block;margin:0 auto 10px;opacity:.95}
+.tc-logo{width:180px;height:90px;display:block;margin:0 auto 10px;opacity:.95;object-fit:contain}
 .tc-title{font-size:clamp(22px,3.6vw,40px);letter-spacing:-.02em;font-weight:800}
 .tc-subtitle{max-width:min(880px,92vw);margin:8px auto 0;color:var(--muted);font-size:clamp(14px,2.2vw,18px)}
 
@@ -54,19 +54,22 @@ body{
 /* Container */
 .container{max-width:1200px;margin:0 auto;padding:0 clamp(12px,3vw,24px) 44px}
 
-/* Controles do carrossel (mobile) */
-.cards-nav{display:none;align-items:center;justify-content:flex-end;gap:10px;margin:6px 0 -6px 0}
+/* Controles do carrossel — oculto no desktop, visível só no mobile */
+.cards-nav{
+  display:none !important; /* garante oculto fora do mobile */
+  align-items:center;justify-content:flex-end;gap:10px;margin:6px 0 -6px 0;
+}
 .nav-btn{
   width:40px;height:40px;border-radius:999px;border:1px solid var(--stroke);background:#fff;
   box-shadow:var(--shadow);font-size:22px;display:grid;place-items:center;cursor:pointer;color:#0f172a
 }
 .nav-btn:disabled{opacity:.45;cursor:not-allowed}
 
-/* Grid/Carrossel */
+/* Grid / Carrossel */
 .cards{display:grid;gap:24px;margin-top:20px;grid-template-columns:repeat(3,minmax(0,1fr))}
 @media (max-width:1200px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:768px){
-  .cards-nav{display:flex}
+  .cards-nav{display:flex !important;}
   .cards{display:flex;gap:18px;overflow:auto;padding:6px 4px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
   .cards::-webkit-scrollbar{display:none}
 }
