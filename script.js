@@ -174,7 +174,7 @@ function render(period="mensal"){
     price.className = "price";
     price.innerHTML = `${plan.price}<small>/mês</small>`;
 
-    // Savings
+    // Savings (com valor em negrito)
     let savingsEl = null;
     if (plan.savings){
       savingsEl = document.createElement("div");
