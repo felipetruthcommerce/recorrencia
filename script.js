@@ -6,7 +6,7 @@ const DATA = {
       price: "R$ 597,00",
       variant: "base",
       features: [
-        "Grupo exclusivo com especialistas",
+        "Grupo exclusivo com especialistas no whatsapp",
         "1 banner para loja virtual / mês",
         "1 card para Instagram / mês",
         "PriceMatrix™ — planilha de precificação por marketplace",
@@ -49,7 +49,7 @@ const DATA = {
       variant: "base",
       savings: "Economize R$ 537,30 no semestre", // (597-507,45)*6
       features: [
-        "Grupo exclusivo com especialistas",
+        "Grupo exclusivo com especialistas no whatsapp",
         "1 banner para loja virtual / mês",
         "1 card para Instagram / mês",
         "PriceMatrix™ — planilha de precificação por marketplace",
@@ -99,7 +99,7 @@ const DATA = {
       variant: "base",
       savings: "Economize R$ 1.432,80 no ano", // (597-477,60)*12
       features: [
-        "Grupo exclusivo com especialistas",
+        "Grupo exclusivo com especialistas no whatsapp",
         "1 banner para loja virtual / mês",
         "1 card para Instagram / mês",
         "PriceMatrix™ — planilha de precificação por marketplace",
