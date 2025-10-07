@@ -20,7 +20,7 @@ const DATA = {
       variant: "recommended",
       tag: "Recomendado",
       features: [
-        "Tudo do Essencial",
+        "Tudo do Essencial +",
         "3 banners mensais (1 rotativo + 2 de categoria)",
         "3 cards para Instagram / mês",
         "Rede de Fornecedores Homologados"
@@ -65,7 +65,7 @@ const DATA = {
       variant: "recommended",
       savings: "Economize R$ 627,30 no semestre", // (697-592,45)*6
       features: [
-        "Tudo do Essencial",
+        "Tudo do Essencial +",
         "3 banners mensais (1 rotativo + 2 de categoria)",
         "3 cards para Instagram / mês",
         "Rede de Fornecedores Homologados",
@@ -80,7 +80,7 @@ const DATA = {
       variant: "master",
       savings: "Economize R$ 807,30 no semestre", // (897-762,45)*6
       features: [
-        "Tudo do Escala",
+        "Tudo do Escala +",
         "4 banners mensais (2 rotativos + 2 de categoria)",
         "4 cards para Instagram / mês",
         "1 Análise de performance em até 2 canais com insights",
@@ -116,7 +116,7 @@ const DATA = {
       variant: "recommended",
       savings: "Economize R$ 1.672,80 no ano", // (697-557,60)*12
       features: [
-        "Tudo do Essencial",
+        "Tudo do Essencial +",
         "3 banners mensais (1 rotativo + 2 de categoria)",
         "3 cards para Instagram / mês",
         "Rede de Fornecedores Homologados",
@@ -131,7 +131,7 @@ const DATA = {
       variant: "master",
       savings: "Economize R$ 2.152,80 no ano", // (897-717,60)*12
       features: [
-        "Tudo do Escala",
+        "Tudo do Escala +",
         "4 banners mensais (2 rotativos + 2 de categoria)",
         "4 cards para Instagram / mês",
         "1 Análise de performance em até 2 canais com insights",
