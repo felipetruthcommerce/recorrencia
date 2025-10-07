@@ -41,12 +41,13 @@ const DATA = {
     }
   ],
 
+  /* === Semestral agora com 15% OFF === */
   semestral: [
     {
       title: "Essencial",
-      price: "R$ 567,15",
+      price: "R$ 507,45", // 597 * 0.85
       variant: "base",
-      savings: "Economize R$ 179,10 no semestre",
+      savings: "Economize R$ 537,30 no semestre", // (597-507,45)*6
       features: [
         "Grupo exclusivo com especialistas",
         "1 banner para loja virtual / mês",
@@ -60,9 +61,9 @@ const DATA = {
     },
     {
       title: "Escala",
-      price: "R$ 662,15",
+      price: "R$ 592,45", // 697 * 0.85
       variant: "recommended",
-      savings: "Economize R$ 209,10 no semestre",
+      savings: "Economize R$ 627,30 no semestre", // (697-592,45)*6
       features: [
         "Tudo do Essencial",
         "3 banners mensais (1 rotativo + 2 de categoria)",
@@ -75,9 +76,9 @@ const DATA = {
     },
     {
       title: "Truth Master",
-      price: "R$ 852,15",
+      price: "R$ 762,45", // 897 * 0.85
       variant: "master",
-      savings: "Economize R$ 269,10 no semestre",
+      savings: "Economize R$ 807,30 no semestre", // (897-762,45)*6
       features: [
         "Tudo do Escala",
         "4 banners mensais (2 rotativos + 2 de categoria)",
@@ -90,12 +91,13 @@ const DATA = {
     }
   ],
 
+  /* === Anual agora com 20% OFF === */
   anual: [
     {
       title: "Essencial",
-      price: "R$ 537,30",
+      price: "R$ 477,60", // 597 * 0.80
       variant: "base",
-      savings: "Economize R$ 716,40 no ano",
+      savings: "Economize R$ 1.432,80 no ano", // (597-477,60)*12
       features: [
         "Grupo exclusivo com especialistas",
         "1 banner para loja virtual / mês",
@@ -110,9 +112,9 @@ const DATA = {
     },
     {
       title: "Escala",
-      price: "R$ 627,30",
+      price: "R$ 557,60", // 697 * 0.80
       variant: "recommended",
-      savings: "Economize R$ 836,40 no ano",
+      savings: "Economize R$ 1.672,80 no ano", // (697-557,60)*12
       features: [
         "Tudo do Essencial",
         "3 banners mensais (1 rotativo + 2 de categoria)",
@@ -125,9 +127,9 @@ const DATA = {
     },
     {
       title: "Truth Master",
-      price: "R$ 807,30",
+      price: "R$ 717,60", // 897 * 0.80
       variant: "master",
-      savings: "Economize R$ 1.076,40 no ano",
+      savings: "Economize R$ 2.152,80 no ano", // (897-717,60)*12
       features: [
         "Tudo do Escala",
         "4 banners mensais (2 rotativos + 2 de categoria)",
@@ -148,7 +150,6 @@ const $$ = (s,ctx=document)=>[...ctx.querySelectorAll(s)];
 const cardsRoot = $("#cards");
 const prevBtn   = $(".cards-nav .prev");
 const nextBtn   = $(".cards-nav .next");
-
 function iconCheck(){ return `<span class="icon" aria-hidden="true">✓</span>`; }
 
 // ===== Render =====
@@ -162,19 +163,16 @@ function render(period="mensal"){
       (plan.variant==="recommended" ? " recommended" : "") +
       (plan.variant==="master" ? " master" : "");
 
-    // Cabeçalho
     const head = document.createElement("div");
     head.className = "card-head";
     head.innerHTML =
       `<h2 class="plan-title">${plan.title}</h2>` +
       (plan.tag ? `<span class="badge">${plan.tag}</span>` : "");
 
-    // Preço
     const price = document.createElement("div");
     price.className = "price";
     price.innerHTML = `${plan.price}<small>/mês</small>`;
 
-    // Savings (com valor em negrito)
     let savingsEl = null;
     if (plan.savings){
       savingsEl = document.createElement("div");
@@ -183,25 +181,21 @@ function render(period="mensal"){
       savingsEl.innerHTML = valorNegrito;
     }
 
-    // Linha
     const hr = document.createElement("div");
     hr.className = "hr";
 
-    // Benefícios
     const feats = document.createElement("div");
     feats.className = "features";
     feats.innerHTML = plan.features
       .map(f => `<div class="feature">${iconCheck()}<div>${f}</div></div>`)
       .join("");
 
-    // CTA
     const ctaWrap = document.createElement("div");
     ctaWrap.className = "card-cta";
     ctaWrap.innerHTML = `<button class="cta ${plan.cta.secondary ? "secondary" : ""}" aria-label="${plan.cta.label} — ${plan.title}">
       ${plan.cta.label}
     </button>`;
 
-    // Montagem
     card.append(head, price);
     if (savingsEl) card.appendChild(savingsEl);
     card.append(hr, feats, ctaWrap);
