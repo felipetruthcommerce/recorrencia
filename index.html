@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Planos de Suporte — Truth Commerce</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#cards">Pular para os planos</a>
+
+  <header class="tc-header">
+    <img class="tc-logo" src="truthcommercelogopreta.png" alt="Truth Commerce" />
+    <h1 class="tc-title">Planos de Suporte Personalizado</h1>
+    <p class="tc-subtitle">
+      Escale seu negócio com especialistas em e-commerce e marketplaces.
+      Descontos no semestral e anual + benefícios extras.
+    </p>
+
+    <!-- Toggle profissional -->
+    <div class="toggle-wrap" role="tablist" aria-label="Alternar período de cobrança">
+      <button class="toggle-btn active" data-billing="mensal" role="tab" aria-selected="true">
+        Mensal
+      </button>
+      <button class="toggle-btn" data-billing="semestral" role="tab" aria-selected="false">
+        Semestral <span class="pill">5% OFF</span>
+      </button>
+      <button class="toggle-btn" data-billing="anual" role="tab" aria-selected="false">
+        Anual <span class="pill">10% OFF</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Navegação do carrossel (aparece só no mobile) -->
+    <div class="cards-nav" aria-hidden="true">
+      <button class="nav-btn prev" aria-label="Plano anterior" disabled>‹</button>
+      <button class="nav-btn next" aria-label="Próximo plano">›</button>
+    </div>
+
+    <section id="cards" class="cards" aria-live="polite"></section>
+
+    <p class="note">
+      * Preços em R$/mês. Em planos semestrais e anuais, o desconto é aplicado durante todo o período contratado.
+      Bônus e benefícios extras válidos enquanto o plano estiver ativo.
+    </p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
